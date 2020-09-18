@@ -1,11 +1,33 @@
 package com.example.restaurant.Model
 
-class DataManager {
+object  DataManager {
     val restaurants = HashMap<String,RestaurantInfo>()
     val dishes =ArrayList<DishInfo>()
 
     init{
         initializeRestaurants()
+        initializeDishes()
+    }
+
+    private fun initializeDishes() {
+        var restaurant = restaurants["1"]!!
+        var dish = DishInfo(restaurant,"Milanesa","Llajua with hot meat")
+        dishes.add((dish))
+
+        dish = DishInfo(restaurant,"Silpancho","Yum!")
+        dishes.add(dish)
+
+        restaurant = restaurants["2"]!!
+        dish = DishInfo(restaurant,"Pique","sausages with potatoes")
+        dishes.add(dish)
+
+        restaurant = restaurants["3"]!!
+        dish = DishInfo(restaurant,"Lomito","bread with meat")
+        dishes.add(dish)
+
+        restaurant = restaurants["4"]!!
+        dish = DishInfo(restaurant,"Sonso","yuca")
+        dishes.add(dish)
     }
 
 

@@ -7,6 +7,6 @@ class RestaurantInfo(var IdRestaurant:String, var Title:String ){
 }
 
 
-class DishInfo(var dish:RestaurantInfo, var Title:String, var Note:String){
+data class DishInfo(var dish:RestaurantInfo, var Title:String, var Note:String){
 
 }
