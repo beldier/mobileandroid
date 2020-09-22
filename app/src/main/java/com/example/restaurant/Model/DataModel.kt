@@ -1,12 +1,16 @@
 package com.example.restaurant.Model
 
-class RestaurantInfo(var IdRestaurant:String, var Title:String ){
-    override fun toString(): String{
+class RestaurantInfo(var IdRestaurant: String, var Title: String) {
+    override fun toString(): String {
         return Title
     }
 }
 
 
-data class DishInfo(var dish:RestaurantInfo, var Title:String, var Note:String){
+data class DishInfo(
+    var dish: RestaurantInfo? = null,
+    var Title: String? = null,
+    var Note: String? = null
+) {
 
 }

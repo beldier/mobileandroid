@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ListDishesActivity"
-            android:label="@string/title_activity_list_dishes"
+            android:name=".ListRestaurantDishesActivity"
+            android:label="@string/title_activity_list_restaurant_dishes"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+
+        <activity
+            android:name=".ListDishesActivity"
+            android:label="@string/title_activity_list_dishes"
+            android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

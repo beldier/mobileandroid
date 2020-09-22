@@ -8,6 +8,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.restaurant.Model.DataManager
+import com.example.restaurant.Model.DishInfo
 import kotlinx.android.synthetic.main.content_list_dishes.*
 
 class ListDishesActivity : AppCompatActivity() {
@@ -29,5 +30,10 @@ class ListDishesActivity : AppCompatActivity() {
             activityMainIntent.putExtra(EXTRA_DISH_POSITION,position)
             startActivity(activityMainIntent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (listViewDishes.adapter as ArrayAdapter<DishInfo>).notifyDataSetChanged()
     }
 }
