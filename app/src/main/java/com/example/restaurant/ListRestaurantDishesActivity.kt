@@ -1,5 +1,6 @@
 package com.example.restaurant
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.restaurant.Model.DataManager
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class ListRestaurantDishesActivity : AppCompatActivity() {
@@ -29,8 +31,10 @@ class ListRestaurantDishesActivity : AppCompatActivity() {
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
+            var intentMain = Intent(this,MainActivity::class.java)
+            startActivity(intentMain)
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -46,7 +50,7 @@ class ListRestaurantDishesActivity : AppCompatActivity() {
 //        navView.setupWithNavController(navController)
 //        findViewById<RecyclerView>(R.id.recyclerlistDishes)
         recyclerlistDishes.layoutManager =  LinearLayoutManager(this)
-        recyclerlistDishes.adapter = DishRecyclerAdapter()
+        recyclerlistDishes.adapter = DishRecyclerAdapter(this,DataManager.dishes)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -58,5 +62,10 @@ class ListRestaurantDishesActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        recyclerlistDishes.adapter?.notifyDataSetChanged()
     }
 }
