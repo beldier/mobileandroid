@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurant.Model.DataManager
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.content_list_restaurant_dishes.*
 
 class ListRestaurantDishesActivity : AppCompatActivity() {
 
@@ -49,6 +50,7 @@ class ListRestaurantDishesActivity : AppCompatActivity() {
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 //        navView.setupWithNavController(navController)
 //        findViewById<RecyclerView>(R.id.recyclerlistDishes)
+
         recyclerlistDishes.layoutManager =  LinearLayoutManager(this)
         recyclerlistDishes.adapter = DishRecyclerAdapter(this,DataManager.dishes)
     }

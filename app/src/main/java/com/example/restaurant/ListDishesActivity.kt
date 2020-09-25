@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.restaurant.Model.DataManager
 import com.example.restaurant.Model.DishInfo
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_list_dishes.*
 
 class ListDishesActivity : AppCompatActivity() {
