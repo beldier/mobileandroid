@@ -2,7 +2,10 @@ package com.example.restaurant
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -17,10 +20,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurant.Model.DataManager
+import kotlinx.android.synthetic.main.activity_list_restaurant_dishes.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_list_restaurant_dishes.*
 
-class ListRestaurantDishesActivity : AppCompatActivity() {
+class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -39,20 +43,16 @@ class ListRestaurantDishesActivity : AppCompatActivity() {
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
-//        val navController = findNavController(R.id.nav_host_fragment)
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-//        appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow
-//            ), drawerLayout
-//        )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-//        navView.setupWithNavController(navController)
-//        findViewById<RecyclerView>(R.id.recyclerlistDishes)
+
+
 
         recyclerlistDishes.layoutManager =  LinearLayoutManager(this)
         recyclerlistDishes.adapter = DishRecyclerAdapter(this,DataManager.dishes)
+
+        val toggle = ActionBarDrawerToggle(this,drawer_layout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
+        drawer_layout.addDrawerListener(toggle)
+        toggle.syncState()
+        navView.setNavigationItemSelectedListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -69,5 +69,27 @@ class ListRestaurantDishesActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         recyclerlistDishes.adapter?.notifyDataSetChanged()
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.nav_dishes->{
+                //show the notes lis
+            }
+            R.id.nav_restaurant->{
+                //todo show the restaurant list
+            }
+            R.id.nav_share->{
+                handleSelection("Don't you think you/ve shared enough?")
+            }
+            R.id.nav_send->{
+
+            }
+        }
+        return true
+    }
+
+    private fun handleSelection(message: String) {
+        //todo implement snackbar
     }
 }
