@@ -1,30 +1,29 @@
 package com.example.restaurant
 
 import android.content.Intent
+import android.graphics.Point
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.restaurant.Model.DataManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_list_restaurant_dishes.*
-import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.content_list_restaurant_dishes.*
+
 
 class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener {
 
@@ -36,7 +35,7 @@ class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNaviga
 
 
     private val restaurantLayoutManager by lazy{
-        GridLayoutManager(this,2)
+        GridLayoutManager(this,resources.getInteger(R.integer.restaurant_grid_span))
     }
     private val restaurantRecyclerAdapter by lazy{
         RestaurantRecyclerAdapter(this,DataManager.restaurants.values.toList())
@@ -98,10 +97,14 @@ class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNaviga
                 displayRestaurants()
             }
             R.id.nav_share->{
-                handleSelection("Don't you think you/ve shared enough?")
+                handleSelection(getString(R.string.share_text))
             }
             R.id.nav_send->{
-                handleSelection("Send")
+                handleSelection(getString(R.string.send))
+            }
+            R.id.action_count_rish_restaurants->{
+               val message = getString(R.string.how_many_restaurant_message,DataManager.dishes.size,DataManager.restaurants.size)
+               Snackbar.make(recyclerlistDishes,message,Snackbar.LENGTH_LONG).show()
             }
         }
         drawer_layout.closeDrawer(GravityCompat.START)

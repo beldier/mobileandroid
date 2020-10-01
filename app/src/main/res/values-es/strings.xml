@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Restaurante</string>
+    <string name="title_activity_list_dishes">Lista platos</string>
+    <string name="first_fragment_label">1er fragmento</string>
+    <string name="second_fragment_label">fragmento</string>
+    <string name="next">siguiente</string>
+    <string name="previous">previo</string>
+    <string name="hello_first_fragment">fragmento</string>
+    <string name="hello_second_fragment">fragmento</string>
+    <string name="title_activity_list_restaurant_dishes">Lista de platos de actividad</string>
+    <string name="navigation_drawer_open">abri</string>
+    <string name="navigation_drawer_close">cerar</string>
+    <string name="nav_header_title">android</string>
+    <string name="nav_header_subtitle">android</string>
+    <string name="nav_header_desc">header</string>
+    <string name="action_settings">configuraciones</string>
+    <string name="menu_home">Casa</string>
+    <string name="menu_gallery">Galeria</string>
+    <string name="menu_slideshow">Presentacion</string>
+    <string name="restaurant_title">Titurlo de restaurante</string>
+    <string name="send">enviar</string>
+    <string name="share_text">No crees que ya enviaste</string>
+    <string name="amount_restaurant_dishes">Cantidad de platos de restaurant</string>
+    <string name="how_many_restaurant_message">Tu tienes %1$d platos | y %2$d restaurantes</string>
+</resources>
