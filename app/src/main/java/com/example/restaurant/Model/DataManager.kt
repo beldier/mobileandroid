@@ -9,6 +9,7 @@ object  DataManager {
         initializeDishes()
     }
 
+
     private fun initializeDishes() {
         var restaurant = restaurants["1"]!!
         var dish = DishInfo(restaurant,"Milanesa","Llajua with hot meat")
@@ -43,6 +44,12 @@ object  DataManager {
 
         restaurant = RestaurantInfo("4","Macdonalds")
         restaurants.set(restaurant.IdRestaurant,restaurant);
+    }
+
+    fun addDish(restaurant:RestaurantInfo,dishTitle:String,dishText:String):Int {
+        val dish = DishInfo(restaurant,dishTitle,dishText)
+        dishes.add(dish)
+        return dishes.lastIndex
     }
 
 }

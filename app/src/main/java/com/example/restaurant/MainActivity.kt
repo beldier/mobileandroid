@@ -14,6 +14,7 @@ import com.example.restaurant.Model.RestaurantInfo
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+    private val tag = this::class.java.simpleName
     private var dishPosition = POSITION_NOT_SET
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         }else{
             createDish()
         }
+
+        Log.d(tag,"OnCreate")
     }
 
     private fun createDish() {
@@ -48,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         super.onPause()
         saveDish()
+        Log.d(tag,"OnPause")
     }
 
     private fun saveDish() {
@@ -66,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         val dish = DataManager.dishes[dishPosition]
         editTextTitle.setText(dish.Title)
         editTextText.setText(dish.Note)
-
+        Log.i(tag,"Displaying not for position $dishPosition")
         val restaurantPosition = DataManager.restaurants.values.indexOf(dish.dish)
 
         spinnerRestaurant.setSelection(restaurantPosition)
@@ -91,6 +95,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
         if(dishPosition >= DataManager.dishes.lastIndex){
+            Log.i(tag,"Cambio de icono $dishPosition max value of dishes ${DataManager.dishes.lastIndex}")
             var item =menu?.findItem(R.id.action_next)
             if(item!=null){
                 item.icon = getDrawable(R.drawable.ic_block_block_24)

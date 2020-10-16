@@ -88,6 +88,7 @@ class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNaviga
         recyclerlistDishes.adapter?.notifyDataSetChanged()
     }
 
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.nav_dishes->{
@@ -97,7 +98,8 @@ class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNaviga
                 displayRestaurants()
             }
             R.id.nav_share->{
-                handleSelection(getString(R.string.share_text))
+               val activityIntent = Intent(this,ListTagActivity::class.java)
+                startActivity(activityIntent)
             }
             R.id.nav_send->{
                 handleSelection(getString(R.string.send))
