@@ -2,11 +2,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:cardBackgroundColor="#DC7171"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
@@ -35,10 +35,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Name: "
+                android:text="Cuisines"
                 android:textAppearance="@style/TagTitle"
                 app:layout_constraintStart_toStartOf="@+id/textViewTitleRestaurant"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTitleRestaurant"/>
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitleRestaurant" />
 
             <TextView
                 android:id="@+id/textViewRestaurant"
@@ -59,6 +59,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:layout_constraintStart_toEndOf="@+id/textViewTitleName"
                 app:layout_constraintTop_toBottomOf="@+id/textViewTitleRestaurant"/>
+
             <Button
                 android:id="@+id/buttonImageTag"
                 style="@style/ButtonTag"
@@ -67,9 +68,9 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:padding="16dp"
-                android:text="Get image Restaurant"
+                android:text="Go to restaurant"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewTitleName"/>
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitleName" />
             <ImageView
                 android:id="@+id/imageViewTag"
                 android:layout_width="100dp"

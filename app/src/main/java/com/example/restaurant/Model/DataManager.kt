@@ -10,7 +10,7 @@ object  DataManager {
     }
 
 
-    private fun initializeDishes() {
+    fun initializeDishes() {
         var restaurant = restaurants["1"]!!
         var dish = DishInfo(restaurant,"Milanesa","Llajua with hot meat")
         dishes.add((dish))
@@ -31,7 +31,6 @@ object  DataManager {
         dishes.add(dish)
     }
 
-
     private fun initializeRestaurants(){
         var restaurant = RestaurantInfo("1","Milaneso shack")
         restaurants.set(restaurant.IdRestaurant,restaurant);
@@ -46,10 +45,17 @@ object  DataManager {
         restaurants.set(restaurant.IdRestaurant,restaurant);
     }
 
-    fun addDish(restaurant:RestaurantInfo,dishTitle:String,dishText:String):Int {
+    fun addDish(restaurant:RestaurantInfo?,dishTitle:String,dishText:String):Int {
         val dish = DishInfo(restaurant,dishTitle,dishText)
         dishes.add(dish)
         return dishes.lastIndex
+    }
+
+    fun findDish(restaurant: RestaurantInfo, dishTitle: String, dishText: String): DishInfo? {
+        for(dish in dishes)
+            if(restaurant == dish.dish && dishTitle == dish.Title && dishText == dish.text )
+                return dish;
+        return null;
     }
 
 }

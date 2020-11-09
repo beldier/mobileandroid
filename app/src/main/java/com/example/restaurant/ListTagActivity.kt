@@ -2,6 +2,7 @@ package com.example.restaurant
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import com.example.restaurant.services.ServiceBuilder
 import com.example.restaurant.services.TagApi
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_list_tag.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -35,17 +37,21 @@ class ListTagActivity : AppCompatActivity() {
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 var jsonObject = JSONObject(response.body())
                 var restaurants = jsonObject.get("restaurants") as JSONArray
-                val restaurant = restaurants.getJSONObject(0)
-                val e =restaurant.get("restaurant") as JSONObject
-                val restaurantName = e.get("name")
-                val restaurantTag = e.get("highlights") as JSONArray
-                for (i in 0 until restaurantTag.length()) {
-                    tagList.add(TagModel(restaurantName.toString() , restaurantTag[i].toString()))
+                for (i in 0 until restaurants.length()) {
+                    val restaurant = restaurants.getJSONObject(i)
+                    val e =restaurant.get("restaurant") as JSONObject
+                    val restaurantName = e.get("name")
+                    val restaurantCuisines =  e.get("cuisines")
+                    val restaurantImage = e.get("thumb")
+                    val restaurantURL = e.get("url")
+                    tagList.add(TagModel(restaurantName.toString() ,restaurantCuisines.toString(),restaurantImage.toString(),restaurantURL.toString() ))
+
                 }
+
                 var adapterTag  = RestaurantListAdapter(applicationContext,tagList)
                 RecyclerViewTag.layoutManager = LinearLayoutManager(applicationContext)
                 RecyclerViewTag.adapter = adapterTag
-
+//                Picasso.with(this).load()
             }
             override fun onFailure(call: Call<String>, t: Throwable) {
                 Toast.makeText(applicationContext,"Failed :'v ",Toast.LENGTH_SHORT).show()

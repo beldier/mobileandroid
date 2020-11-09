@@ -1,25 +1,37 @@
 package com.example.restaurant
 
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.example.restaurant.Model.DataManager
 import com.example.restaurant.Model.DishInfo
 import com.example.restaurant.Model.RestaurantInfo
+import com.example.restaurant.databinding.ActivityMainBinding
+import com.example.restaurant.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private val tag = this::class.java.simpleName
     private var dishPosition = POSITION_NOT_SET
+
+    val helper = DishGetLocationHelper(this,lifecycle)
+
+    private val viewModel:MainViewModel by lazy{
+        ViewModelProviders.of(this).get(MainViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+//        setContentView(R.layout.activity_main)
+        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         val adapterRestaurant = ArrayAdapter<RestaurantInfo>(
             this, android.R.layout.simple_spinner_item,
             DataManager.restaurants.values.toList()
@@ -56,8 +68,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun saveDish() {
         val dish = DataManager.dishes[dishPosition]
-        dish.Title =  editTextTitle.text.toString()
-        dish.Note = editTextText.text.toString()
+        dish.Title =  textDishTitle.text.toString()
+        dish.text = textDishText.text.toString()
         dish.dish = spinnerRestaurant.selectedItem as RestaurantInfo
     }
 
@@ -68,8 +80,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayDish() {
         val dish = DataManager.dishes[dishPosition]
-        editTextTitle.setText(dish.Title)
-        editTextText.setText(dish.Note)
+        viewModel.displayDish(dishPosition)
+//        textDishTitle.setText(dish.Title)
+//        textDishText.setText(dish.text)
+
         Log.i(tag,"Displaying not for position $dishPosition")
         val restaurantPosition = DataManager.restaurants.values.indexOf(dish.dish)
 
@@ -85,7 +99,10 @@ class MainActivity : AppCompatActivity() {
         when(item.itemId){
             R.id.action_settings-> true
             R.id.action_next->{
+                helper.sendMessage(DataManager.dishes[dishPosition])
                 MoveNext()
+                true
+
             }
             else -> super.onOptionsItemSelected(item)
 

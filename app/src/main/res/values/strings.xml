@@ -25,5 +25,6 @@
     <string name="share_text">Don\'t you think you/ve shared enough?</string>
     <string name="amount_restaurant_dishes">Amount of Restaurant dishes</string>
     <string name="how_many_restaurant_message">You have %1$d Dishes | and %2$d Restaurants</string>
+    <string name="likes">likes</string>
 
 </resources>

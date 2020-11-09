@@ -6,4 +6,7 @@
 
     <color name="TitleTextColor">#edc988</color>
     <color name="TextColor">#a7305d</color>
+
+    <color name="popular">#ff76a5</color>
+    <color name="star">#ff0057</color>
 </resources>

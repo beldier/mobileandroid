@@ -12,12 +12,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.restaurant.Model.DataManager
+import com.example.restaurant.viewmodel.ListRestaurantDishesActivityViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
@@ -40,6 +43,9 @@ class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNaviga
     private val restaurantRecyclerAdapter by lazy{
         RestaurantRecyclerAdapter(this,DataManager.restaurants.values.toList())
     }
+    private val viewModel by lazy{
+        ViewModelProvider(this)[ListRestaurantDishesActivityViewModel::class.java]
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_restaurant_dishes)
@@ -54,9 +60,7 @@ class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNaviga
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
 
-
-        displayDishes()
-
+        handleDisplaySelection(viewModel.navDrawerDisplaySelection)
         val toggle = ActionBarDrawerToggle(this,drawer_layout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
         toggle.syncState()
@@ -79,7 +83,8 @@ class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNaviga
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment)
+//        val navController = findNavController(R.id.nav_host_fragment)
+        val navController = findNavController(R.id.nav_host_fragment_container)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
@@ -91,12 +96,12 @@ class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNaviga
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+            R.id.nav_restaurant,
             R.id.nav_dishes->{
-                displayDishes()
+                handleDisplaySelection(item.itemId)
+                viewModel.navDrawerDisplaySelection = item.itemId
             }
-            R.id.nav_restaurant->{
-                displayRestaurants()
-            }
+
             R.id.nav_share->{
                val activityIntent = Intent(this,ListTagActivity::class.java)
                 startActivity(activityIntent)
@@ -111,6 +116,18 @@ class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNaviga
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun handleDisplaySelection(itemId: Int) {
+        when(itemId){
+            R.id.nav_dishes ->{
+                displayDishes()
+            }
+            R.id.nav_restaurant->{
+                displayRestaurants()
+            }
+        }
+
     }
 
     private fun handleSelection(message: String) {
