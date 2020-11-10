@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.jwhh.notekeeper.fragments.TitleFragment">
+    tools:context="com.example.restaurant.fragments.TitleFragment">
 
     <data>
 
@@ -40,7 +40,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/android_trivia" />
+            app:srcCompat="@drawable/ic_diet" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

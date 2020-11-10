@@ -1,4 +1,4 @@
-package com.jwhh.notekeeper.fragments
+package com.example.restaurant.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,8 +17,11 @@ class TitleFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater, R.layout.fragment_title, container, false)
 
+        val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater, R.layout.fragment_title, container, false)
+        binding.playButton.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_titleFragment_to_gameFragment)
+        }
         return binding.root
     }
 
