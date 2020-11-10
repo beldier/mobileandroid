@@ -26,5 +26,8 @@
     <string name="amount_restaurant_dishes">Amount of Restaurant dishes</string>
     <string name="how_many_restaurant_message">You have %1$d Dishes | and %2$d Restaurants</string>
     <string name="likes">likes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="take_survey">Take Survey</string>
 
 </resources>

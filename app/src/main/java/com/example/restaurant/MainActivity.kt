@@ -1,5 +1,6 @@
 package com.example.restaurant
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -7,7 +8,6 @@ import android.view.MenuItem
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.restaurant.Model.DataManager
 import com.example.restaurant.Model.DishInfo
@@ -15,6 +15,8 @@ import com.example.restaurant.Model.RestaurantInfo
 import com.example.restaurant.databinding.ActivityMainBinding
 import com.example.restaurant.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.spinnerRestaurant
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
     private val tag = this::class.java.simpleName
@@ -32,6 +34,11 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        buttonSurvey.setOnClickListener {
+            startActivity(Intent(this, SurveyActivity::class.java))
+        }
+
         val adapterRestaurant = ArrayAdapter<RestaurantInfo>(
             this, android.R.layout.simple_spinner_item,
             DataManager.restaurants.values.toList()
@@ -56,8 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createDish() {
-        DataManager.dishes.add(DishInfo())
-        dishPosition = DataManager.dishes.lastIndex
+        dishPosition = viewModel.createNewDish()
     }
 
     override fun onPause() {
@@ -67,10 +73,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveDish() {
-        val dish = DataManager.dishes[dishPosition]
-        dish.Title =  textDishTitle.text.toString()
-        dish.text = textDishText.text.toString()
-        dish.dish = spinnerRestaurant.selectedItem as RestaurantInfo
+        viewModel.updateDish(dishPosition,spinnerRestaurant.selectedItem as RestaurantInfo)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -85,7 +88,7 @@ class MainActivity : AppCompatActivity() {
 //        textDishText.setText(dish.text)
 
         Log.i(tag,"Displaying not for position $dishPosition")
-        val restaurantPosition = DataManager.restaurants.values.indexOf(dish.dish)
+        val restaurantPosition = DataManager.restaurants.values.indexOf(dish.restaurant)
 
         spinnerRestaurant.setSelection(restaurantPosition)
     }

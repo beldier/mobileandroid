@@ -45,7 +45,7 @@ object  DataManager {
         restaurants.set(restaurant.IdRestaurant,restaurant);
     }
 
-    fun addDish(restaurant:RestaurantInfo?,dishTitle:String,dishText:String):Int {
+    fun addDish(restaurant: RestaurantInfo, dishTitle:String, dishText:String):Int {
         val dish = DishInfo(restaurant,dishTitle,dishText)
         dishes.add(dish)
         return dishes.lastIndex
@@ -53,7 +53,7 @@ object  DataManager {
 
     fun findDish(restaurant: RestaurantInfo, dishTitle: String, dishText: String): DishInfo? {
         for(dish in dishes)
-            if(restaurant == dish.dish && dishTitle == dish.Title && dishText == dish.text )
+            if(restaurant == dish.restaurant && dishTitle == dish.Title && dishText == dish.text )
                 return dish;
         return null;
     }

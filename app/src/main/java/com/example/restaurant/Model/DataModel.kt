@@ -8,7 +8,7 @@ class RestaurantInfo(var IdRestaurant: String, var Title: String) {
 
 
 data class DishInfo(
-    var dish: RestaurantInfo? = null,
+    var restaurant: RestaurantInfo? = null,
     var Title: String? = null,
     var text: String? = null
 ) {

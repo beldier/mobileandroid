@@ -19,7 +19,7 @@ class DataManagerTest{
         val index = DataManager.addDish(restaurant,dishTitle,dishText)
         val dish = DataManager.dishes[index]
 
-        assertEquals(restaurant,dish.dish)
+        assertEquals(restaurant,dish.restaurant)
         assertEquals(dishTitle,dish.Title)
         assertEquals(dishText,dishText)
     }

@@ -24,7 +24,7 @@ class DishGetLocationHelper(val context: Context, val lifecycle:Lifecycle):Lifec
     var msgConnection : PseudoMessagingConnection?=null
 
     fun sendMessage(dish: DishInfo){
-        val getTogetherMessage = "$currentLat|$currentLon|${dish.Title}|${dish.dish?.Title}"
+        val getTogetherMessage = "$currentLat|$currentLon|${dish.Title}|${dish.restaurant?.Title}"
         msgConnection?.send(getTogetherMessage)
     }
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

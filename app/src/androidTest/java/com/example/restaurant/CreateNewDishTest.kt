@@ -40,7 +40,7 @@ class CreateNewDishTest{
         Espresso.pressBack()
 
         val newDish = DataManager.dishes.last()
-        assertEquals(restaurant,newDish.dish)
+        assertEquals(restaurant,newDish.restaurant)
         assertEquals(dishTitle,newDish.Title)
         assertEquals(dishText,newDish.text)
 

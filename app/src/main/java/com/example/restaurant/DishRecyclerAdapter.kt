@@ -39,7 +39,7 @@ class DishRecyclerAdapter(private val context:Context, private val dishes:List<D
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dish = dishes [position]
-        holder.textRestaurant.text = dish.dish?.Title
+        holder.textRestaurant.text = dish.restaurant?.Title
         holder.textTitle.text = dish.Title
         holder.dishPosition = position
     }
