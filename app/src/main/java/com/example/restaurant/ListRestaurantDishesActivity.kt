@@ -113,6 +113,14 @@ class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNaviga
                val message = getString(R.string.how_many_restaurant_message,DataManager.dishes.size,DataManager.restaurants.size)
                Snackbar.make(recyclerlistDishes,message,Snackbar.LENGTH_LONG).show()
             }
+            R.id.nav_services -> {
+                val activityIntent = Intent(this,MyServicesActivity::class.java)
+                startActivity(activityIntent)
+            }
+            R.id.nav_services2 -> {
+                val activityIntent = Intent(this,MyServices2Activity::class.java)
+                startActivity(activityIntent)
+            }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true

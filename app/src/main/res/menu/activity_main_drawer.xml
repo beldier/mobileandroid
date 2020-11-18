@@ -12,6 +12,14 @@
             android:id="@+id/nav_restaurant"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Restaurants" />
+        <item
+            android:id="@+id/nav_services"
+            android:icon="@drawable/ic_forward_white_24"
+            android:title="Services" />
+        <item
+            android:id="@+id/nav_services2"
+            android:icon="@drawable/ic_forward_white_24"
+            android:title="Services 2" />
     </group>
     <item android:title="Communicate" >
         <menu>
