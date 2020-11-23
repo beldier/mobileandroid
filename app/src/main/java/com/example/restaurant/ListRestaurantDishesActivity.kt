@@ -121,6 +121,10 @@ class ListRestaurantDishesActivity : AppCompatActivity(),NavigationView.OnNaviga
                 val activityIntent = Intent(this,MyServices2Activity::class.java)
                 startActivity(activityIntent)
             }
+            R.id.nav_receivers-> {
+                val activityIntent = Intent(this,MyBroadcastReceiverActivity::class.java)
+                startActivity(activityIntent)
+            }
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true

@@ -11,9 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        <service android:name=".services.MyBoundService" android:exported="false" android:process=":my_own_process"/>-->
-        <service android:name=".services.MyBoundService" />
-        <activity android:name=".MyServices2Activity"></activity>
+        <activity android:name=".MyBroadcastReceiverActivity"></activity>
+
+
+        <service
+            android:name=".services.MyBoundService"
+            android:exported="false" /> <!-- <service android:name=".services.MyBoundService" /> -->
+        <service
+            android:name=".services.MyMessengerService"
+            android:exported="false"
+            android:process=":my_own_process" />
+
+        <activity android:name=".MyServices2Activity" />
 
         <service android:name=".services.MyStartedService" />
         <service android:name=".services.MyIntentService" />
@@ -38,6 +47,23 @@
             android:label="@string/title_activity_list_dishes"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity" />
+
+        <receiver android:name=".receivers.MySecondReceiver">
+            <intent-filter>
+                <action android:name="my.custom.action.name"></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".receivers.MyFirstReceiver" >
+            <intent-filter>
+                <action android:name="my.custom.action.name" ></action>
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".MyBroadcastReceiverActivity$MyThirdReceiverInner">
+            <intent-filter>
+                <action android:name="my.custom.action.name"></action>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
